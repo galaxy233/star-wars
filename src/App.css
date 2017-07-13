@@ -1,0 +1,32 @@
+body {
+  background-color: #152345;
+}
+
+nav {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-image: url("./assets/img/lightsaber.png");
+  background-position:top;
+  border-bottom: 5px solid white;
+  height: 75px;
+  padding: 20px;
+  color: white;
+}
