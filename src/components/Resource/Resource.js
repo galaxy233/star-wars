@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getData, fetchNames } from '../services/swapi';
+import { getData, fetchNames } from '../../services/swapi';
 import Details from './Details';
 
 class Resource extends Component {

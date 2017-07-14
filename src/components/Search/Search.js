@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { searchMultiple } from '../../services/swapi';
+
 import Input from './Input';
 import Results from './Results';
-import { searchMultiple } from '../services/swapi';
-import results from './results.json';
 
 class Search extends Component {
   constructor(props) {

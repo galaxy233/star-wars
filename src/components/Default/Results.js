@@ -10,11 +10,10 @@ const Row = ({ name, url }) => {
   )
 }
 
-
 const Table = ({ results }) => {
   const rows = results.map(item => {
     return (
-      <Row name={item.name} url={item.url}/>
+      <Row name={item.name ? item.name : item.title } url={item.url}/>
     )
   })
   return (

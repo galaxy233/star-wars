@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getDataByPage } from './services/swapi';
+import { getDataByPage } from '../../services/swapi';
 import Results from './Results';
 
 class Default extends Component {
@@ -48,10 +48,9 @@ class Default extends Component {
                 goBack={ () => this.goBack() }
                 goForward={ () => this.goForward() }
                 pageNumber={ this.state.pageNumber }
-      />
+                />
     )
   }
-
 }
 
 export default Default;

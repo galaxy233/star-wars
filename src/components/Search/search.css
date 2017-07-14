@@ -1,0 +1,23 @@
+.search-box {
+  width: 90%;
+  margin: 20px auto; }
+  .search-box input {
+    background: none;
+    border-radius: 0px;
+    width: 50%; }
+  .search-box button {
+    margin: 10px; }
+  .search-box i {
+    color: white; }
+    .search-box i:hover {
+      color: #33C3F0; }
+
+.search-advanced {
+  width: 30%;
+  margin: auto; }
+  .search-advanced form {
+    display: flex;
+    justify-content: space-between; }
+
+.results-box {
+  font-size: 1.5em; }

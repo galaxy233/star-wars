@@ -1,13 +1,24 @@
 // $blue-primary: #1D5CFB
 // $red-primary: #FC1D28
 
-$primary: #1D5CFB
-$secondary: #33C3F0
+// BLUE
+// $background: #152345
+// $primary: #33C3F0
+
+// RED
+$background: #42161B
+$primary: #FC1D28
 
 body
-  background-color: #152345
+  margin: 0
+  padding: 0
+  background-color: $background
   color: white
   font-family: 'Play', sans-serif
+  a
+    color: white
+    &:hover
+      color: $primary
 
 button
   border-radius: 0px
@@ -15,7 +26,7 @@ button
 
 button:hover,
 button:focus
-  border-color: $secondary
+  border-color: $primary
   color: white
 
 nav
@@ -57,12 +68,14 @@ nav
     background: none
     border-radius: 0px
     width: 50%
+    &:focus
+      border-color: $primary
   button
     margin: 10px
   i
     color: white
     &:hover
-      color: $secondary
+      color: $primary
 
 .search-advanced
   width: 30%
@@ -84,6 +97,14 @@ nav
     th
       width: 250px
 
+=tr-hover()
+  tr
+    transition: 0.2s all ease
+    &:hover
+      background-color: $primary
+      a
+        color: black
+
 .Collapsible
   width: 80%
   margin: auto
@@ -94,6 +115,8 @@ nav
     width: 100%
   i
     margin-left: 10px
+  +tr-hover()
+
 
 .default-results
   width: 80%
@@ -106,3 +129,4 @@ nav
     justify-content: space-between
     i
       color: white
+  +tr-hover()
