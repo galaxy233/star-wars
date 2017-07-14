@@ -42,7 +42,20 @@ nav a:hover {
   .search-box input {
     background: none;
     border-radius: 0px;
-    width: 100%; }
+    width: 50%; }
+  .search-box button {
+    margin: 10px; }
+  .search-box i {
+    color: white; }
+    .search-box i:hover {
+      color: #33C3F0; }
+
+.search-advanced {
+  width: 30%;
+  margin: auto; }
+  .search-advanced form {
+    display: flex;
+    justify-content: space-between; }
 
 .results-box {
   font-size: 1.5em; }
@@ -50,6 +63,6 @@ nav a:hover {
 .details-name {
   font-size: 2.5em; }
 
-.details-table {
-  max-width: 80%;
+.details-box table {
+  width: 80%;
   margin: auto; }

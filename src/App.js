@@ -5,6 +5,7 @@ import Nav from './Nav.js';
 import Home from './Home.js';
 import Characters from './Characters/Characters';
 import Planets from './Planets';
+import Details from './Details';
 import './assets/css/normalize.css';
 import './assets/css/skeleton.css';
 import './App.css';
@@ -18,9 +19,10 @@ class App extends Component {
         <HashRouter>
           <div>
             <Nav/>
-            <Route path="/" component={Home}/>
-            <Route path="/characters" component={Characters}/>
-            <Route path="/planets" component={Planets}/>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/characters" component={Characters}/>
+            <Route exact path="/planets" component={Planets}/>
+            <Route path="/planets/:id" component={Planets}/>
           </div>
         </HashRouter>
       </div>
