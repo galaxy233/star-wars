@@ -1,4 +1,5 @@
 import React from 'react';
+import Collapsible from 'react-collapsible';
 import { Link } from 'react-router-dom';
 
 const noDisplay = ["created", "edited", "url", "name", "homeworld"];
@@ -30,15 +31,7 @@ function TableRow({ name, data }) {
   )
 }
 
-function TableRowCollapse({ name, data, collapsed, removeFromCollapsed, addToCollapsed }) {
-  function handleClick() {
-    if (collapsed.indexOf(name) !== -1) {
-      removeFromCollapsed(name);
-    } else {
-      addToCollapsed(name);
-    }
-  }
-
+function TableRowCollapse({ name, data }) {
   const collapsedRows = data.map(e => {
     return (
       <tr>
@@ -47,20 +40,26 @@ function TableRowCollapse({ name, data, collapsed, removeFromCollapsed, addToCol
       </tr>
     )
   })
-
+  const trigger = (open) => {
+    return (
+      <div>
+        { formatKey(name) }
+        <i className={ open ? "fa fa-arrow-up" : "fa fa-arrow-down"}></i>
+      </div>
+    )
+  }
   return (
-    <table>
-      <tr>
-        <th>{ formatKey(name) }</th>
-        <td><i onClick={handleClick} className="fa fa-caret-down fa-2x"></i></td>
-      </tr>
-      { collapsed.indexOf(name) === -1 ? collapsedRows : null }
-    </table>
+    <Collapsible trigger={ trigger(false) } triggerWhenOpen={ trigger(true) }>
+      <table>
+        { collapsedRows }
+      </table>
+    </Collapsible>
+
   )
 
 }
 
-function Table({ data, collapsed, removeFromCollapsed, addToCollapsed }) {
+function Table({ data }) {
   const tables = []
   const rows = Object.keys(data).filter(e => noDisplay.indexOf(e) === -1)
                 .map(e => {
@@ -68,9 +67,6 @@ function Table({ data, collapsed, removeFromCollapsed, addToCollapsed }) {
                     tables.push( (
                       <TableRowCollapse name={e}
                                         data={data[e]}
-                                        collapsed={collapsed}
-                                        removeFromCollapsed={removeFromCollapsed}
-                                        addToCollapsed={addToCollapsed}
                                         />
                     ))
 
@@ -91,15 +87,11 @@ function Table({ data, collapsed, removeFromCollapsed, addToCollapsed }) {
   )
 }
 
-export default function Details({ data, collapsed, removeFromCollapsed, addToCollapsed }) {
+export default function Details({ data }) {
   return (
     <div className="details-box">
       <Name name={ data.name }/>
-      <Table  data={ data }
-              collapsed={collapsed}
-              removeFromCollapsed={removeFromCollapsed}
-              addToCollapsed={addToCollapsed}
-              />
+      <Table  data={ data } />
     </div>
   )
 }

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { getData, fetchNames } from '../services/swapi';
-import axios from 'axios';
 import Details from './Details';
 
 class Resource extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: {},
-      collapsed: []
+      data: {}
     }
   }
 
@@ -19,8 +17,7 @@ class Resource extends Component {
       Promise.all(toFetch.map(key => fetchNames(data, key)))
       .then(arr => {
         this.setState({
-          data: Object.assign(data, ...arr),
-          collapsed: toFetch
+          data: Object.assign(data, ...arr)
         })
       })
     })
@@ -36,31 +33,12 @@ class Resource extends Component {
     this.fetchData(params.resource, params.id)
   }
 
-  removeFromCollapsed(name){
-    let copy = this.state.collapsed.slice();
-    let idx = copy.indexOf(name);
-    copy.splice(idx, 1);
-    this.setState({
-      collapsed: copy
-    })
-  }
-
-  addToCollapsed(name){
-    this.setState({
-      collapsed: [...this.state.collapsed, name]
-    })
-  }
-
   render() {
     return (
       <div className="container">
         <div className="row">
           <div className="columns twelve">
-            <Details  data={this.state.data}
-                      collapsed={this.state.collapsed}
-                      removeFromCollapsed={ (name) => this.removeFromCollapsed(name) }
-                      addToCollapsed={ (name) => this.addToCollapsed(name) }
-                      />
+            <Details data={this.state.data} />
           </div>
         </div>
       </div>
