@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { getData, fetchNames } from './services/swapi';
+import { getData, fetchNames } from '../services/swapi';
 import axios from 'axios';
 import Details from './Details';
 
-class Planets extends Component {
+class Resource extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -12,8 +12,8 @@ class Planets extends Component {
     }
   }
 
-  componentDidMount() {
-    getData("planets", this.props.match.params.id)
+  fetchData(resource, id) {
+    getData(resource, id)
     .then(data => {
       let toFetch = Object.keys(data).filter(key => Array.isArray(data[key]))
       Promise.all(toFetch.map(key => fetchNames(data, key)))
@@ -24,6 +24,16 @@ class Planets extends Component {
         })
       })
     })
+  }
+
+  componentDidMount() {
+    let params = this.props.match.params;
+    this.fetchData(params.resource, params.id)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let params = nextProps.match.params;
+    this.fetchData(params.resource, params.id)
   }
 
   removeFromCollapsed(name){
@@ -58,4 +68,4 @@ class Planets extends Component {
   }
 }
 
-export default Planets;
+export default Resource;

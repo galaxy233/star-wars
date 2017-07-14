@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import Nav from './Nav.js';
 import Home from './Home.js';
-import Characters from './Characters/Characters';
-import Planets from './Planets';
-import Details from './Details';
+import Resource from './Resource/Resource';
+import Default from './Default';
 import './assets/css/normalize.css';
 import './assets/css/skeleton.css';
 import './App.css';
@@ -18,11 +17,10 @@ class App extends Component {
         </div>
         <HashRouter>
           <div>
-            <Nav/>
+            <Route path="/" component={Nav}/>
             <Route exact path="/" component={Home}/>
-            <Route exact path="/characters" component={Characters}/>
-            <Route exact path="/planets" component={Planets}/>
-            <Route path="/planets/:id" component={Planets}/>
+            <Route exact path="/:resource" component={Default}/>
+            <Route path="/:resource/:id" component={Resource}/>
           </div>
         </HashRouter>
       </div>

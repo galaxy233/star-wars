@@ -1,8 +1,9 @@
 import React from 'react';
-import character from './Characters/character.json';
+import { Link } from 'react-router-dom';
 
-const noDisplay = ["created", "edited", "url"];
+const noDisplay = ["created", "edited", "url", "name", "homeworld"];
 
+const endpointRegEx = /\/[a-z]+\/\d+/;
 
 function capitalize(str) {
   return str[0].toUpperCase() + str.substr(1)
@@ -37,27 +38,42 @@ function TableRowCollapse({ name, data, collapsed, removeFromCollapsed, addToCol
       addToCollapsed(name);
     }
   }
+
+  const collapsedRows = data.map(e => {
+    return (
+      <tr>
+        <th></th>
+        <td><Link to={ e.url.match(endpointRegEx)[0] }>{ e.name }</Link></td>
+      </tr>
+    )
+  })
+
   return (
-    <tr>
-      <th>{ formatKey(name) }</th>
-      <td><i onClick={handleClick} className="fa fa-caret-down fa-2x"></i></td>
-    </tr>
+    <table>
+      <tr>
+        <th>{ formatKey(name) }</th>
+        <td><i onClick={handleClick} className="fa fa-caret-down fa-2x"></i></td>
+      </tr>
+      { collapsed.indexOf(name) === -1 ? collapsedRows : null }
+    </table>
   )
 
 }
 
 function Table({ data, collapsed, removeFromCollapsed, addToCollapsed }) {
+  const tables = []
   const rows = Object.keys(data).filter(e => noDisplay.indexOf(e) === -1)
                 .map(e => {
                   if (Array.isArray(data[e])) {
-                    return (
+                    tables.push( (
                       <TableRowCollapse name={e}
                                         data={data[e]}
                                         collapsed={collapsed}
                                         removeFromCollapsed={removeFromCollapsed}
                                         addToCollapsed={addToCollapsed}
                                         />
-                    )
+                    ))
+
                   } else {
                     return (
                       <TableRow name={e} data={data[e]}/>
@@ -65,9 +81,13 @@ function Table({ data, collapsed, removeFromCollapsed, addToCollapsed }) {
                   }
                 })
   return (
-    <table>
-      { rows }
-    </table>
+    <div>
+      <table>
+        { rows }
+      </table>
+    { tables }
+    </div>
+
   )
 }
 

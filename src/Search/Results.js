@@ -1,5 +1,15 @@
 import React from 'react';
-import Item from './Item';
+import { Link } from 'react-router-dom';
+
+const endpointRegEx = /\/[a-z]+\/\d+/;
+
+function Item({ name, url }) {
+  return (
+    <div className="results-item">
+      <Link to={url.match(endpointRegEx)[0]}>{ name }</Link>
+    </div>
+  )
+}
 
 function Results({ results, noResults }) {
   const items = results.map(item => {

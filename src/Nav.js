@@ -1,14 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Nav() {
+const Nav = ({ location }) => {
   return (
     <nav>
-      <Link to="/">Home</Link>
-      <Link to="/movies">Movies</Link>
-      <Link to="/characters">Characters</Link>
-      <Link to="/planets">Planets</Link>
-      <Link to="/starships">Starships</Link>
+      <Link to="/">
+        <div className={ location.pathname === "/" ? "active" : null }>
+          Home
+        </div>
+      </Link>
+      <Link to="/films">
+        <div className={ location.pathname === "/films" ? "active" : null }>
+          Films
+        </div>
+      </Link>
+      <Link to="/people">
+        <div className={ location.pathname === "/people" ? "active" : null }>
+          People
+        </div>
+      </Link>
+      <Link to="/planets">
+        <div className={ location.pathname === "/planets" ? "active" : null }>
+          Planets
+        </div>
+      </Link>
+      <Link to="/starships">
+        <div className={ location.pathname === "/starships" ? "active" : null }>
+          Starships
+        </div>
+      </Link>
     </nav>
   )
 }
+
+export default Nav;

@@ -19,7 +19,6 @@ button:focus
   color: white
 
 nav
-  margin-top: 10px
   display: flex
   justify-content: space-around
 
@@ -30,6 +29,15 @@ nav a
 
 nav a:hover
   text-decoration: underline
+
+nav
+  div
+    width: 100px
+    height: 25px
+  .active
+    background-color: white
+    color: black
+    font-weight: bold
 
 .App
   text-align: center
@@ -73,3 +81,17 @@ nav a:hover
   table
     width: 80%
     margin: auto
+    th
+      width: 250px
+
+.default-results
+  width: 80%
+  margin: 50px auto
+  table
+    width: 100%
+  div
+    width: 100%
+    display: flex
+    justify-content: space-between
+    i
+      color: white

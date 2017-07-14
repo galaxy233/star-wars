@@ -13,7 +13,6 @@ button:focus {
   color: white; }
 
 nav {
-  margin-top: 10px;
   display: flex;
   justify-content: space-around; }
 
@@ -24,6 +23,15 @@ nav a {
 
 nav a:hover {
   text-decoration: underline; }
+
+nav div {
+  width: 100px;
+  height: 25px; }
+
+nav .active {
+  background-color: white;
+  color: black;
+  font-weight: bold; }
 
 .App {
   text-align: center; }
@@ -66,3 +74,17 @@ nav a:hover {
 .details-box table {
   width: 80%;
   margin: auto; }
+  .details-box table th {
+    width: 250px; }
+
+.default-results {
+  width: 80%;
+  margin: 50px auto; }
+  .default-results table {
+    width: 100%; }
+  .default-results div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; }
+    .default-results div i {
+      color: white; }
