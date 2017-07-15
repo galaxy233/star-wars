@@ -1,36 +1,15 @@
 import React, { Component } from 'react';
-import { getData, fetchNames } from '../../services/swapi';
+import { connect } from 'react-redux';
+import { fetchDataIfNeeded } from '../../actions';
 import Details from './Details';
 
 class Resource extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      data: {}
-    }
-  }
-
-  fetchData(resource, id) {
-    getData(resource, id)
-    .then(data => {
-      let toFetch = Object.keys(data).filter(key => Array.isArray(data[key]))
-      Promise.all(toFetch.map(key => fetchNames(data, key)))
-      .then(arr => {
-        this.setState({
-          data: Object.assign(data, ...arr)
-        })
-      })
-    })
   }
 
   componentDidMount() {
-    let params = this.props.match.params;
-    this.fetchData(params.resource, params.id)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    let params = nextProps.match.params;
-    this.fetchData(params.resource, params.id)
+    this.props.dispatch(fetchDataIfNeeded("https://swapi.co/api/planets/1"))
   }
 
   render() {
@@ -38,7 +17,7 @@ class Resource extends Component {
       <div className="container">
         <div className="row">
           <div className="columns twelve">
-            <Details data={this.state.data} />
+            <h1>Hello World!</h1>
           </div>
         </div>
       </div>
@@ -46,4 +25,6 @@ class Resource extends Component {
   }
 }
 
-export default Resource;
+const mapStateToProps = state => ({ data:state })
+
+export default connect(mapStateToProps)(Resource);
