@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {store, receiveData} from '../ducks';
 
 const baseURL = "https://swapi.co/api";
 
@@ -12,14 +13,27 @@ export function getDataByPage(resource, pageNumber) {
   .then(res => res.data)
 }
 
+function getDataFromStore(url) {
+  let state = store.getState();
+  let cached = state.find(e => e.location === url)
+  if (cached) {
+    return Promise.resolve(cached.data)
+  } else {
+    return axios.get(url)
+      .then(res => res.data)
+      .then(data => {
+        store.dispatch(receiveData(url, data))
+        return data
+      })
+  }
+}
+
 export function getData(resource, id) {
-  return axios.get(`${baseURL}/${resource}/${id}`)
-  .then(res => res.data)
+  return getDataFromStore(`${baseURL}/${resource}/${id}/`)
 }
 
 export function fetchNames(data, key) {
-  return Promise.all(data[key].map(url => axios.get(url)))
-        .then(arr => arr.map(res => res.data))
+  return Promise.all(data[key].map(url => getDataFromStore(url)))
         .then(arr => {
           return {
             [key]: arr.map(obj => {

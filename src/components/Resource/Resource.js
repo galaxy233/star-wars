@@ -17,7 +17,7 @@ class Resource extends Component {
       Promise.all(toFetch.map(key => fetchNames(data, key)))
       .then(arr => {
         this.setState({
-          data: Object.assign(data, ...arr)
+          data: Object.assign({}, data, ...arr)
         })
       })
     })

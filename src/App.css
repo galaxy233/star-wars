@@ -1,13 +1,13 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #42161B;
+  background-color: #152345;
   color: white;
   font-family: 'Play', sans-serif; }
   body a {
     color: white; }
     body a:hover {
-      color: #FC1D28; }
+      color: #33C3F0; }
 
 button {
   border-radius: 0px;
@@ -15,7 +15,7 @@ button {
 
 button:hover,
 button:focus {
-  border-color: #FC1D28;
+  border-color: #33C3F0;
   color: white; }
 
 nav {
@@ -58,13 +58,13 @@ nav .active {
     border-radius: 0px;
     width: 50%; }
     .search-box input:focus {
-      border-color: #FC1D28; }
+      border-color: #33C3F0; }
   .search-box button {
     margin: 10px; }
   .search-box i {
     color: white; }
     .search-box i:hover {
-      color: #FC1D28; }
+      color: #33C3F0; }
 
 .search-advanced {
   width: 30%;
@@ -98,7 +98,7 @@ nav .active {
   .Collapsible tr {
     transition: 0.2s all ease; }
     .Collapsible tr:hover {
-      background-color: #FC1D28; }
+      background-color: #33C3F0; }
       .Collapsible tr:hover a {
         color: black; }
 
@@ -116,6 +116,6 @@ nav .active {
   .default-results tr {
     transition: 0.2s all ease; }
     .default-results tr:hover {
-      background-color: #FC1D28; }
+      background-color: #33C3F0; }
       .default-results tr:hover a {
         color: black; }
