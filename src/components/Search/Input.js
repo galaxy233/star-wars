@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Advanced({ options, updateOptions }) {
+const Advanced = ({ options, updateOptions }) => {
   return (
     <div className="search-advanced">
       <form>
@@ -41,7 +41,7 @@ function Advanced({ options, updateOptions }) {
   )
 }
 
-function Input(props) {
+const Input = (props) => {
   return (
     <div>
       <input onChange={ (e) => props.updateTextField(e.target.value) } type="text"/>

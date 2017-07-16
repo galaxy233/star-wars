@@ -6,15 +6,12 @@ const noDisplay = ["created", "edited", "url", "name", "homeworld"];
 
 const endpointRegEx = /\/[a-z]+\/\d+/;
 
-function capitalize(str) {
-  return str[0].toUpperCase() + str.substr(1)
-}
+const capitalize = (str) => str[0].toUpperCase() + str.substr(1)
 
-function formatKey(str) {
-  return str.replace('_',' ').replace(/\w+/g, capitalize)
-}
+const formatKey = (str) => str.replace('_',' ').replace(/\w+/g, capitalize)
 
-function Name({ name }) {
+
+const Name = ({ name }) => {
   return (
     <div className="details-name">
       { name }
@@ -22,7 +19,7 @@ function Name({ name }) {
   )
 }
 
-function TableRow({ name, data }) {
+const TableRow = ({ name, data }) => {
   return (
     <tr>
       <th>{ formatKey(name) }</th>
@@ -31,7 +28,7 @@ function TableRow({ name, data }) {
   )
 }
 
-function TableRowCollapse({ name, data }) {
+const TableRowCollapse = ({ name, data }) => {
   const collapsedRows = data.map(e => {
     return (
       <tr>
@@ -54,28 +51,23 @@ function TableRowCollapse({ name, data }) {
         { collapsedRows }
       </table>
     </Collapsible>
-
   )
-
 }
 
-function Table({ data }) {
-  const tables = []
-  const rows = Object.keys(data).filter(e => noDisplay.indexOf(e) === -1)
-                .map(e => {
-                  if (Array.isArray(data[e])) {
-                    tables.push( (
-                      <TableRowCollapse name={e}
-                                        data={data[e]}
-                                        />
-                    ))
+const Table = ({ data }) => {
+  const toDisplay = Object.keys(data).filter(key => noDisplay.indexOf(key) === -1)
+  const tables = toDisplay.filter(key => Array.isArray(data[key]))
+                          .map(e => {
+                            return (
+                              <TableRowCollapse name={e} data={data[e]}/>
+                            )})
 
-                  } else {
-                    return (
-                      <TableRow name={e} data={data[e]}/>
-                    )
-                  }
-                })
+  const rows = toDisplay.filter(key => typeof data[key] === 'string')
+                        .map(e => {
+                          return (
+                            <TableRow name={e} data={data[e]}/>
+                          )})
+
   return (
     <div>
       <table>
@@ -83,15 +75,16 @@ function Table({ data }) {
       </table>
     { tables }
     </div>
-
   )
 }
 
-export default function Details({ data }) {
+const Details = ({ data }) => {
   return (
     <div className="details-box">
       <Name name={ data.name }/>
-      <Table  data={ data } />
+      <Table data={ data } />
     </div>
   )
 }
+
+export default Details;

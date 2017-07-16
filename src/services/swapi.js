@@ -1,19 +1,19 @@
-import axios from 'axios';
-import {store, receiveData} from '../ducks';
+import axios from 'axios'
+import {store, receiveData} from '../ducks'
 
-const baseURL = "https://swapi.co/api";
+const baseURL = "https://swapi.co/api"
 
-function searchResource(resource, query) {
+const searchResource = (resource, query) => {
   return axios.get(`${baseURL}/${resource}/?search=${query}`)
-  .then(res => res.data)
+    .then(res => res.data)
 }
 
-export function getDataByPage(resource, pageNumber) {
+export const getDataByPage = (resource, pageNumber) => {
   return axios.get(`${baseURL}/${resource}/?page=${pageNumber}`)
-  .then(res => res.data)
+    .then(res => res.data)
 }
 
-function getDataFromStore(url) {
+const getDataFromStore = (url) => {
   let state = store.getState();
   let cached = state.find(e => e.location === url)
   if (cached) {
@@ -28,11 +28,11 @@ function getDataFromStore(url) {
   }
 }
 
-export function getData(resource, id) {
+export const getData = (resource, id) => {
   return getDataFromStore(`${baseURL}/${resource}/${id}/`)
 }
 
-export function fetchNames(data, key) {
+export const fetchNames = (data, key) => {
   return Promise.all(data[key].map(url => getDataFromStore(url)))
         .then(arr => {
           return {
@@ -40,16 +40,14 @@ export function fetchNames(data, key) {
               return {
                 name: obj.name ? obj.name : obj.title,
                 url: obj.url
-              }
-            })
-          }
-        })
+              }})
+          }})
 }
 
-export function searchMultiple(resources, query) {
-  var promises = []
+export const searchMultiple = (resources, query) => {
+  let promises = []
   resources.forEach(e => {
-    promises.push(searchResource(e, query));
+    promises.push(searchResource(e, query))
   })
   return Promise.all(promises)
 }

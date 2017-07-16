@@ -56,17 +56,17 @@ class Search extends Component {
   render() {
     return (
       <div className="search-box">
-        <Input  updateTextField={ (val) => this.updateTextField(val) }
-                toggleAdvanced={ () => this.toggleAdvanced() }
-                updateOptions={ (options) => this.updateOptions(options) }
-                executeSearch={ () => this.executeSearch() }
-                value={ this.state.textField }
-                advanced={ this.state.advanced }
-                options={ this.state.options }
-                />
-        <Results  results={ this.state.results }
-                  noResults={ this.state.noResults }
-                  />
+        <Input updateTextField={ (val) => this.updateTextField(val) }
+               toggleAdvanced={ () => this.toggleAdvanced() }
+               updateOptions={ (options) => this.updateOptions(options) }
+               executeSearch={ () => this.executeSearch() }
+               value={ this.state.textField }
+               advanced={ this.state.advanced }
+               options={ this.state.options }
+               />
+        <Results results={ this.state.results }
+                 noResults={ this.state.noResults }
+                 />
       </div>
     )
   }

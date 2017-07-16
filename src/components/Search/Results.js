@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const endpointRegEx = /\/[a-z]+\/\d+/;
 
-function Item({ name, url }) {
+const Item = ({ name, url }) => {
   return (
     <div className="results-item">
       <Link to={url.match(endpointRegEx)[0]}>{ name }</Link>
@@ -11,7 +11,7 @@ function Item({ name, url }) {
   )
 }
 
-function Results({ results, noResults }) {
+const Results = ({ results, noResults }) => {
   const items = results.map(item => {
     return (
       <Item name={item.name} url={item.url}/>
