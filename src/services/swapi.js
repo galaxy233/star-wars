@@ -33,7 +33,7 @@ export const getData = (resource, id) => {
 }
 
 export const fetchHomeworld = (url) => {
-  return getDataFromStore(url)
+  return getDataFromStore(url.replace("http", "https"))
     .then(data => {
       return {
         homeworld : data.name
@@ -42,7 +42,9 @@ export const fetchHomeworld = (url) => {
 }
 
 export const fetchNames = (data, key) => {
-  return Promise.all(data[key].map(url => getDataFromStore(url)))
+  return Promise.all(data[key].map(url => {
+    return getDataFromStore(url.replace("http", "https"))
+  }))
         .then(arr => {
           return {
             [key]: arr.map(obj => {

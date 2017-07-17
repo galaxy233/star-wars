@@ -1,5 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
-import { createLogger } from 'redux-logger';
+import { createStore } from 'redux';
 
 const RECEIVE_DATA = 'RECEIVE_DATA'
 
@@ -21,7 +20,4 @@ const reducer = (state = [], action) => {
   }
 }
 
-export const store = createStore(
-  reducer,
-  applyMiddleware(createLogger())
-)
+export const store = createStore(reducer)

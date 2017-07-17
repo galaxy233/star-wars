@@ -18,6 +18,7 @@ class Resource extends Component {
       if (data.homeworld) {
         promises.push(fetchHomeworld(data.homeworld))
       }
+      console.log(promises);
       Promise.all(promises)
       .then(arr => {
         this.setState({

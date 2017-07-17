@@ -43,7 +43,7 @@ class App extends Component {
             <Route path="/:resource/:id" component={Resource}/>
           </div>
         </HashRouter>
-        <button onClick={ () => this.switchStyle() }>Style</button>
+        <button style={{"margin-top": "20px"}}  onClick={ () => this.switchStyle() }>Style</button>
       </div>
     );
   }
