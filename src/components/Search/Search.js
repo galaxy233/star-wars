@@ -3,7 +3,6 @@ import { searchMultiple } from '../../services/swapi'
 
 import Input from './Input'
 import Results from './Results'
-import Welcome from './Welcome'
 
 class Search extends Component {
   constructor(props) {
