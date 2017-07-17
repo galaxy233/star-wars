@@ -1,8 +1,9 @@
 import React from 'react';
 import Collapsible from 'react-collapsible';
 import { Link } from 'react-router-dom';
+import ScaleLoader from 'halogen/ScaleLoader';
 
-const noDisplay = ["created", "edited", "url", "name", "homeworld"];
+const noDisplay = ["created", "edited", "url", "name", "title"];
 
 const endpointRegEx = /\/[a-z]+\/\d+/;
 
@@ -56,16 +57,16 @@ const TableRowCollapse = ({ name, data }) => {
 
 const Table = ({ data }) => {
   const toDisplay = Object.keys(data).filter(key => noDisplay.indexOf(key) === -1)
-  const tables = toDisplay.filter(key => Array.isArray(data[key]))
+  const tables = toDisplay.filter(key => Array.isArray(data[key]) && data[key].length)
                           .map(e => {
                             return (
-                              <TableRowCollapse name={e} data={data[e]}/>
+                              <TableRowCollapse key={e} name={e} data={data[e]}/>
                             )})
 
-  const rows = toDisplay.filter(key => typeof data[key] === 'string')
+  const rows = toDisplay.filter(key => !Array.isArray(data[key]))
                         .map(e => {
                           return (
-                            <TableRow name={e} data={data[e]}/>
+                            <TableRow key={e} name={e} data={data[e]}/>
                           )})
 
   return (
@@ -81,8 +82,18 @@ const Table = ({ data }) => {
 const Details = ({ data }) => {
   return (
     <div className="details-box">
-      <Name name={ data.name }/>
-      <Table data={ data } />
+      {
+        data.name || data.title
+        ?
+        <div>
+          <Name name={ data.name || data.title }/>
+          <Table data={ data } />
+        </div>
+        :
+        <div className="loader">
+          <ScaleLoader color="white" size="32px"/>
+        </div>
+      }
     </div>
   )
 }

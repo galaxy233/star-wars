@@ -61,6 +61,9 @@ nav
 .search-box
   width: 90%
   margin: 20px auto
+  img
+    width: 250px
+    height: 250px
   input
     background: none
     border-radius: 0px
@@ -94,6 +97,16 @@ nav
     th
       width: 250px
 
+@media (max-width: 850px)
+  .details-box
+    table
+      width: 100%
+      margin: auto
+      th
+        width: 50px
+  .Collapsible
+    width: 100% !important
+
 =tr-hover()
   tr
     transition: 0.2s all ease
@@ -124,6 +137,13 @@ nav
     width: 100%
     display: flex
     justify-content: space-between
+    align-items: center
     i
       color: white
   +tr-hover()
+
+.disabled
+  visibility: hidden
+
+.loader
+  margin: 250px auto

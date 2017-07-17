@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { searchMultiple } from '../../services/swapi';
+import React, { Component } from 'react'
+import { searchMultiple } from '../../services/swapi'
 
-import Input from './Input';
-import Results from './Results';
+import Input from './Input'
+import Results from './Results'
+import Welcome from './Welcome'
 
 class Search extends Component {
   constructor(props) {
@@ -22,9 +23,9 @@ class Search extends Component {
   }
 
   executeSearch() {
-    var results = [];
     var resources = Object.keys(this.state.options).filter(key => this.state.options[key])
     searchMultiple(resources, this.state.textField).then(arr => {
+      var results = []
       arr.forEach(obj => {
         results.push(...obj.results)
       })

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ScaleLoader from 'halogen/ScaleLoader';
 const endpointRegEx = /\/[a-z]+\/\d+/;
 
 const Row = ({ name, url }) => {
@@ -12,8 +13,9 @@ const Row = ({ name, url }) => {
 
 const Table = ({ results }) => {
   const rows = results.map(item => {
+    let name = item.name ? item.name : item.title
     return (
-      <Row name={item.name ? item.name : item.title } url={item.url}/>
+      <Row key={ name } name={ name } url={ item.url }/>
     )
   })
   return (
@@ -24,6 +26,13 @@ const Table = ({ results }) => {
 }
 
 const Results = ({ results, next, goBack, goForward, pageNumber }) => {
+  let arrowLeft = "fa fa-arrow-left fa-3x"
+  let arrowRight = "fa fa-arrow-right fa-3x"
+  let loader = (
+    <div className="loader">
+      <ScaleLoader color="white" size="32px"/>
+    </div>
+  )
 
   const handleGoBack = () => {
     if (pageNumber > 1) {
@@ -38,11 +47,15 @@ const Results = ({ results, next, goBack, goForward, pageNumber }) => {
   }
 
   return (
-    <div className="default-results">
-      <Table results={ results }/>
-      <div>
-        <i onClick={ () => handleGoBack() } className="fa fa-arrow-left fa-3x"></i>
-        <i onClick={ () => handleGoForward() } className="fa fa-arrow-right fa-3x"></i>
+    <div>
+      { results.length ? null : loader }
+      <div className="default-results">
+        <Table results={ results }/>
+        <div>
+          <i onClick={ () => handleGoBack() } className={ pageNumber > 1 ? arrowLeft : arrowLeft + " disabled" }></i>
+          { pageNumber }
+          <i onClick={ () => handleGoForward() } className={ next ? arrowRight : arrowRight + " disabled" }></i>
+        </div>
       </div>
     </div>
   )

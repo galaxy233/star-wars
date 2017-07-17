@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getData, fetchNames } from '../../services/swapi';
+import { getData, fetchNames, fetchHomeworld } from '../../services/swapi';
 import Details from './Details';
 
 class Resource extends Component {
@@ -14,7 +14,11 @@ class Resource extends Component {
     getData(resource, id)
     .then(data => {
       let toFetch = Object.keys(data).filter(key => Array.isArray(data[key]))
-      Promise.all(toFetch.map(key => fetchNames(data, key)))
+      let promises = toFetch.map(key => fetchNames(data, key))
+      if (data.homeworld) {
+        promises.push(fetchHomeworld(data.homeworld))
+      }
+      Promise.all(promises)
       .then(arr => {
         this.setState({
           data: Object.assign({}, data, ...arr)
@@ -31,6 +35,9 @@ class Resource extends Component {
   componentWillReceiveProps(nextProps) {
     let params = nextProps.match.params;
     this.fetchData(params.resource, params.id)
+    this.setState({
+      data:{}
+    })
   }
 
   render() {

@@ -53,6 +53,9 @@ nav .active {
 .search-box {
   width: 90%;
   margin: 20px auto; }
+  .search-box img {
+    width: 250px;
+    height: 250px; }
   .search-box input {
     background: none;
     border-radius: 0px;
@@ -85,6 +88,15 @@ nav .active {
   .details-box table th {
     width: 250px; }
 
+@media (max-width: 850px) {
+  .details-box table {
+    width: 100%;
+    margin: auto; }
+    .details-box table th {
+      width: 50px; }
+  .Collapsible {
+    width: 100% !important; } }
+
 .Collapsible {
   width: 80%;
   margin: auto;
@@ -110,7 +122,8 @@ nav .active {
   .default-results div {
     width: 100%;
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-between;
+    align-items: center; }
     .default-results div i {
       color: white; }
   .default-results tr {
@@ -119,3 +132,9 @@ nav .active {
       background-color: #33C3F0; }
       .default-results tr:hover a {
         color: black; }
+
+.disabled {
+  visibility: hidden; }
+
+.loader {
+  margin: 250px auto; }

@@ -32,6 +32,15 @@ export const getData = (resource, id) => {
   return getDataFromStore(`${baseURL}/${resource}/${id}/`)
 }
 
+export const fetchHomeworld = (url) => {
+  return getDataFromStore(url)
+    .then(data => {
+      return {
+        homeworld : data.name
+      }
+    })
+}
+
 export const fetchNames = (data, key) => {
   return Promise.all(data[key].map(url => getDataFromStore(url)))
         .then(arr => {

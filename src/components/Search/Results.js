@@ -14,7 +14,7 @@ const Item = ({ name, url }) => {
 const Results = ({ results, noResults }) => {
   const items = results.map(item => {
     return (
-      <Item name={item.name} url={item.url}/>
+      <Item name={item.name || item.title} url={item.url}/>
     )
   })
   return (

@@ -13,11 +13,19 @@ class Default extends Component {
     }
   }
 
+  resetResults() {
+    this.setState({
+      results: []
+    })
+  }
+
   goBack() {
+    this.resetResults()
     this.fetchData(this.state.resource, this.state.pageNumber - 1)
   }
 
   goForward() {
+    this.resetResults()
     this.fetchData(this.state.resource, this.state.pageNumber + 1)
   }
 
@@ -38,7 +46,8 @@ class Default extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.fetchData(nextProps.match.params.resource, this.state.pageNumber);
+    this.resetResults()
+    this.fetchData(nextProps.match.params.resource, 1);
   }
 
   render() {
