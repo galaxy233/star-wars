@@ -1,0 +1,140 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #152345;
+  color: white;
+  font-family: 'Play', sans-serif; }
+  body a {
+    color: white; }
+    body a:hover {
+      color: #33C3F0; }
+
+button {
+  border-radius: 0px;
+  color: white; }
+
+button:hover,
+button:focus {
+  border-color: #33C3F0;
+  color: white; }
+
+nav {
+  display: flex;
+  justify-content: space-around; }
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px; }
+
+nav a:hover {
+  text-decoration: underline; }
+
+nav div {
+  width: 100px;
+  height: 25px; }
+
+nav .active {
+  background-color: white;
+  color: black;
+  font-weight: bold; }
+
+.App {
+  text-align: center; }
+
+.App-header {
+  background-image: url("./lightsaber.png");
+  background-position: top;
+  border-bottom: 5px solid white;
+  height: 75px;
+  padding: 20px;
+  color: white; }
+
+.search-box {
+  width: 90%;
+  margin: 20px auto; }
+  .search-box img {
+    width: 250px;
+    height: 250px; }
+  .search-box input {
+    background: none;
+    border-radius: 0px;
+    width: 50%; }
+    .search-box input:focus {
+      border-color: #33C3F0; }
+  .search-box button {
+    margin: 10px; }
+  .search-box i {
+    color: white; }
+    .search-box i:hover {
+      color: #33C3F0; }
+
+.search-advanced {
+  width: 30%;
+  margin: auto; }
+  .search-advanced form {
+    display: flex;
+    justify-content: space-between; }
+
+.results-box {
+  font-size: 1.5em; }
+
+.details-name {
+  font-size: 2.5em; }
+
+.details-box table {
+  width: 80%;
+  margin: auto; }
+  .details-box table th {
+    width: 250px; }
+
+@media (max-width: 850px) {
+  .details-box table {
+    width: 100%;
+    margin: auto; }
+    .details-box table th {
+      width: 50px; }
+  .Collapsible {
+    width: 100% !important; } }
+
+.Collapsible {
+  width: 80%;
+  margin: auto;
+  text-align: left;
+  border-bottom: 1px solid white; }
+  .Collapsible table {
+    margin: 0;
+    width: 100%; }
+  .Collapsible i {
+    margin-left: 10px; }
+  .Collapsible tr {
+    transition: 0.2s all ease; }
+    .Collapsible tr:hover {
+      background-color: #33C3F0; }
+      .Collapsible tr:hover a {
+        color: black; }
+
+.default-results {
+  width: 80%;
+  margin: 50px auto; }
+  .default-results table {
+    width: 100%; }
+  .default-results div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    .default-results div i {
+      color: white; }
+  .default-results tr {
+    transition: 0.2s all ease; }
+    .default-results tr:hover {
+      background-color: #33C3F0; }
+      .default-results tr:hover a {
+        color: black; }
+
+.disabled {
+  visibility: hidden; }
+
+.loader {
+  margin: 250px auto; }
