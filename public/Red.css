@@ -43,7 +43,7 @@ nav .active {
   text-align: center; }
 
 .App-header {
-  background-image: url("./assets/img/lightsaber.png");
+  background-image: url("./lightsaber.png");
   background-position: top;
   border-bottom: 5px solid white;
   height: 75px;

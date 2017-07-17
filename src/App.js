@@ -8,14 +8,33 @@ import Default from './components/Default/Default';
 
 import './assets/css/normalize.css'
 import './assets/css/skeleton.css'
-import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      style:'./Blue.css'
+    }
+  }
+
+  switchStyle() {
+    if (this.state.style === './Blue.css') {
+      this.setState({
+        style:'./Red.css'
+      })
+    } else {
+      this.setState({
+        style:'./Blue.css'
+      })
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-        </div>
+        <link rel="stylesheet" type="text/css" href={ this.state.style }/>
+          <div className="App-header">
+          </div>
         <HashRouter>
           <div>
             <Route path="/" component={Nav}/>
@@ -24,6 +43,7 @@ class App extends Component {
             <Route path="/:resource/:id" component={Resource}/>
           </div>
         </HashRouter>
+        <button onClick={ () => this.switchStyle() }>Style</button>
       </div>
     );
   }
