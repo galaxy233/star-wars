@@ -22,20 +22,24 @@ const Name = ({ name }) => {
 
 const TableRow = ({ name, data }) => {
   return (
-    <tr>
-      <th>{ formatKey(name) }</th>
-      <td>{ data }</td>
-    </tr>
+      <tbody>
+          <tr>
+            <th>{ formatKey(name) }</th>
+            <td>{ data }</td>
+          </tr>
+      </tbody>
   )
 }
 
 const TableRowCollapse = ({ name, data }) => {
   const collapsedRows = data.map(e => {
     return (
-      <tr>
-        <th></th>
-        <td><Link to={ e.url.match(endpointRegEx)[0] }>{ e.name }</Link></td>
-      </tr>
+        <tbody key={e.url}>
+            <tr>
+              <th></th>
+              <td><Link to={ e.url.match(endpointRegEx)[0] }>{ e.name }</Link></td>
+            </tr>
+        </tbody>
     )
   })
   const trigger = (open) => {

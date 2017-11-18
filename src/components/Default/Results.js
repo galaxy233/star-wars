@@ -15,7 +15,7 @@ const Table = ({ results }) => {
   const rows = results.map(item => {
     let name = item.name ? item.name : item.title
     return (
-      <Row key={ name } name={ name } url={ item.url }/>
+      <Row key={ item.url } name={ name } url={ item.url }/>
     )
   })
   return (
